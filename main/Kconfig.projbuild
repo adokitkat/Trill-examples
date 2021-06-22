@@ -2,6 +2,7 @@
 menu "Example Configuration"
 
     menu "WiFi config"
+
         config ESP_WIFI_SSID
             string "WiFi SSID"
             default "myssid"
@@ -13,6 +14,7 @@ menu "Example Configuration"
             default "mypassword"
             help
             WiFi password (WPA or WPA2) for the example to use.
+    
     endmenu
 
     config I2C_SDA_PIN
@@ -26,5 +28,72 @@ menu "Example Configuration"
         default 22
         help
             Set the GPIO number used for I2C SCL.
+    
+    menu "Advanced config"
+        
+        choice TRILL_SQUARE_COORDINATE_LOCAL_SELECT
+            prompt "Trill Square coordinates rounding (resolution)"
+            default TRILL_SQUARE_COORDINATE_128
+            help
+                Select coordinates to which to round.
 
+            config TRILL_SQUARE_COORDINATE_1
+                bool "1"
+            config TRILL_SQUARE_COORDINATE_2
+                bool "2"
+            config TRILL_SQUARE_COORDINATE_4
+                bool "4"
+            config TRILL_SQUARE_COORDINATE_7
+                bool "7"
+            config TRILL_SQUARE_COORDINATE_8
+                bool "8"
+            config TRILL_SQUARE_COORDINATE_14
+                bool "14"
+            config TRILL_SQUARE_COORDINATE_16
+                bool "16"
+            config TRILL_SQUARE_COORDINATE_28
+                bool "28"
+            config TRILL_SQUARE_COORDINATE_32
+                bool "32"
+            config TRILL_SQUARE_COORDINATE_56
+                bool "56"
+            config TRILL_SQUARE_COORDINATE_64
+                bool "64"
+            config TRILL_SQUARE_COORDINATE_112
+                bool "112"
+            config TRILL_SQUARE_COORDINATE_128
+                bool "128"
+            config TRILL_SQUARE_COORDINATE_224
+                bool "224"
+            config TRILL_SQUARE_COORDINATE_256
+                bool "256"
+            config TRILL_SQUARE_COORDINATE_448
+                bool "448"
+            config TRILL_SQUARE_COORDINATE_896
+                bool "896"
+            config TRILL_SQUARE_COORDINATE_1792
+                bool "1792"
+        endchoice
+
+        config TRILL_SQUARE_COORDINATE_LOCAL
+            int
+            default 1 if TRILL_SQUARE_COORDINATE_1
+            default 2 if TRILL_SQUARE_COORDINATE_2
+            default 4 if TRILL_SQUARE_COORDINATE_4
+            default 7 if TRILL_SQUARE_COORDINATE_7
+            default 8 if TRILL_SQUARE_COORDINATE_8
+            default 14 if TRILL_SQUARE_COORDINATE_14
+            default 16 if TRILL_SQUARE_COORDINATE_16
+            default 28 if TRILL_SQUARE_COORDINATE_28
+            default 32 if TRILL_SQUARE_COORDINATE_32
+            default 56 if TRILL_SQUARE_COORDINATE_56
+            default 64 if TRILL_SQUARE_COORDINATE_64
+            default 112 if TRILL_SQUARE_COORDINATE_112
+            default 128 if TRILL_SQUARE_COORDINATE_128
+            default 224 if TRILL_SQUARE_COORDINATE_224
+            default 256 if TRILL_SQUARE_COORDINATE_256
+            default 448 if TRILL_SQUARE_COORDINATE_448
+            default 896 if TRILL_SQUARE_COORDINATE_896
+            default 1792 if TRILL_SQUARE_COORDINATE_1792
+    endmenu
 endmenu
